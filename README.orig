@@ -1,0 +1,11 @@
+nda — no disclosure agreement
+=============================
+
+run a script in the shadow,
+even though someone might be watching
+
+they cannot disclose what they did not see.
+
+$   ./nda [-t]
+$ npx nda [-t]
+

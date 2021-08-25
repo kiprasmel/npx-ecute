@@ -1,0 +1,11 @@
+forbid
+======
+
+run a script in the shadow,
+even though someone might be watching
+
+they cannot disclose what they did not see.
+
+$   ./forbid [-t]
+$ npx forbid [-t]
+

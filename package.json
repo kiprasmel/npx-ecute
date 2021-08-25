@@ -1,0 +1,5 @@
+{
+	"name": "forbid",
+	"bin": "./forbid",
+	"version": "0.1.0"
+}

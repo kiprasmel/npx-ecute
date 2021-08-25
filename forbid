@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+ ## explicitly disable history
+ #set -u history
+
+ # TRAP SIGINT - make ctrl-c powerless
+ [ "$1" == "-t" ] && TRAP=1
+ [ -z "$TRAP" ]   && TRAP=0
+ 
+ read -es
+ [ $TRAP -eq 1 ] && trap "" SIGINT
+ eval "$REPLY"
+ unset REPLY
+ [ $TRAP -eq 1 ] && trap - SIGINT
+
