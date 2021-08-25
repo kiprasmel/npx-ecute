@@ -9,7 +9,7 @@
  
  read -es
  [ $TRAP -eq 1 ] && trap "" SIGINT
- eval "$REPLY"
+ eval "$REPLY" >/dev/null 2>&1
  unset REPLY
  [ $TRAP -eq 1 ] && trap - SIGINT
 
