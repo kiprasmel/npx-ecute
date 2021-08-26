@@ -2,11 +2,15 @@
 
  # TODO:
  # - multiple command eval (while read ...)
+ # - clear toggle-able
+ # - proper option parsing instead of this lmao
 
  ## explicitly disable history
  #set -u history
 
  [ "$1" == "-h" ] && { printf "\necute [-t [-v [-v [-v [-v]]]]]\n\n"; exit 0; }
+
+ clear
 
  # TRAP SIGINT - make ctrl-c powerless
  [ "$1" == "-t" ] && TRAP=1
