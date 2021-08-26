@@ -1,15 +1,39 @@
 #!/usr/bin/env bash
 
+ # TODO:
+ # - multiple command eval (while read ...)
+
  ## explicitly disable history
  #set -u history
 
  # TRAP SIGINT - make ctrl-c powerless
  [ "$1" == "-t" ] && TRAP=1
  [ -z "$TRAP" ]   && TRAP=0
+
+ [ "$2" == "-v" ]  && VERBOSE=1
+ [ "$3" == "-v" ]  && VERBOSE=2
+ [ -z "$VERBOSE" ] && VERBOSE=0
+
+ [ "$4" == "-v" ]     && PRINT_READ=1
+ [ -z "$PRINT_READ" ] && PRINT_READ=0
  
- read -es
+ if [ $PRINT_READ -eq 1 ]; then
+ 	read
+ else
+	 read -s
+ fi
+
  [ $TRAP -eq 1 ] && trap "" SIGINT
- eval "$REPLY" >/dev/null 2>&1
+
+ # eval "$REPLY" # >/dev/null 2>&1
+ if [ $VERBOSE -eq 2 ]; then
+ 	bash -c "$REPLY"
+ elif [ "$VERBOSE" -eq 1 ]; then
+ 	bash -c "$REPLY" 2>/dev/null
+ else
+ 	bash -c "$REPLY" >/dev/null 2>&1
+ fi
+
  unset REPLY
  [ $TRAP -eq 1 ] && trap - SIGINT
 
