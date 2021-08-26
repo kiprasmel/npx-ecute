@@ -35,14 +35,20 @@
  # eval "$REPLY" # >/dev/null 2>&1
  if [ $VERBOSE -eq 3 ]; then
  	bash -c "$REPLY" # allow stdout and stderr
+	RET=$?
  elif [ $VERBOSE -eq 2 ]; then
  	bash -c "$REPLY" 2>/dev/null # allow stdout
+	RET=$?
  elif [ "$VERBOSE" -eq 1 ]; then
  	bash -c "$REPLY" >/dev/null # allow stderr
+	RET=$?
  else
  	bash -c "$REPLY" >/dev/null 2>&1
+	RET=$?
  fi
 
  unset REPLY
  [ $TRAP -eq 1 ] && trap - SIGINT
+
+ exit $RET
 
