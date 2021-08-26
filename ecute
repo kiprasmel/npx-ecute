@@ -6,7 +6,7 @@
  ## explicitly disable history
  #set -u history
 
- [ "$1" == "-h" ] && { printf "\necute [-t [-v [-v [-v]]]]\n\n"; exit 0; }
+ [ "$1" == "-h" ] && { printf "\necute [-t [-v [-v [-v [-v]]]]]\n\n"; exit 0; }
 
  # TRAP SIGINT - make ctrl-c powerless
  [ "$1" == "-t" ] && TRAP=1
@@ -14,9 +14,10 @@
 
  [ "$2" == "-v" ]  && VERBOSE=1
  [ "$3" == "-v" ]  && VERBOSE=2
+ [ "$4" == "-v" ]  && VERBOSE=3
  [ -z "$VERBOSE" ] && VERBOSE=0
 
- [ "$4" == "-v" ]     && PRINT_READ=1
+ [ "$5" == "-v" ]     && PRINT_READ=1
  [ -z "$PRINT_READ" ] && PRINT_READ=0
  
  if [ $PRINT_READ -eq 1 ]; then
@@ -28,10 +29,12 @@
  [ $TRAP -eq 1 ] && trap "" SIGINT
 
  # eval "$REPLY" # >/dev/null 2>&1
- if [ $VERBOSE -eq 2 ]; then
- 	bash -c "$REPLY"
+ if [ $VERBOSE -eq 3 ]; then
+ 	bash -c "$REPLY" # allow stdout and stderr
+ elif [ $VERBOSE -eq 2 ]; then
+ 	bash -c "$REPLY" 2>/dev/null # allow stdout
  elif [ "$VERBOSE" -eq 1 ]; then
- 	bash -c "$REPLY" 2>/dev/null
+ 	bash -c "$REPLY" >/dev/null # allow stderr
  else
  	bash -c "$REPLY" >/dev/null 2>&1
  fi
