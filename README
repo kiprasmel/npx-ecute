@@ -1,11 +1,11 @@
-forbid
-======
+npx-ecute
+=========
 
 run a script in the shadow,
 even though someone might be watching
 
 they cannot disclose what they did not see.
 
-$   ./forbid [-t]
-$ npx forbid [-t]
+$   ./ecute [-t [-v [-v [-v]]]]
+$ npx ecute [-t [-v [-v [-v]]]]
 

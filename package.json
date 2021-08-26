@@ -1,5 +1,5 @@
 {
-	"name": "forbid",
-	"bin": "./forbid",
+	"name": "ecute",
+	"bin": "./ecute",
 	"version": "0.3.0"
 }
